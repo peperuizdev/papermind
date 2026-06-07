@@ -1,0 +1,19 @@
+fastapi==0.115.12
+uvicorn[standard]==0.34.3
+pydantic-settings==2.9.1
+python-dotenv==1.1.0
+qdrant-client==1.18.0
+httpx==0.28.1
+
+# Extracción de PDFs
+pypdf==5.5.0
+pdfplumber==0.11.6
+
+# OCR via Gemini
+google-genai==2.8.0
+
+# Embeddings
+openai==1.82.1
+
+# Subida de archivos multipart
+python-multipart>=0.0.9
