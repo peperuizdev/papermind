@@ -1,13 +1,13 @@
 # PaperMind — Asistente RAG para investigación cosmética
 
-Herramienta de consulta inteligente que permite al equipo de R&D de Famousplace Cosmetics interrogar en lenguaje natural el corpus de estudios científicos internos, obteniendo respuestas sintetizadas con trazabilidad directa a los documentos originales.
+Herramienta de consulta inteligente que permite al equipo de una firma de cosméticos interrogar en lenguaje natural el corpus de estudios científicos internos, obteniendo respuestas sintetizadas con trazabilidad directa a los documentos originales.
 
 ---
 
 ## Historias de usuario
 
 **H1 — Investigadora de ingredientes**
-> Como investigadora de R&D, quiero preguntar qué estudios tenemos sobre un ingrediente activo concreto y recibir un resumen de los hallazgos más relevantes, para no tener que revisar manualmente decenas de PDFs cuando empieza un proyecto de formulación.
+> Como investigadora, quiero preguntar qué estudios tenemos sobre un ingrediente activo concreto y recibir un resumen de los hallazgos más relevantes, para no tener que revisar manualmente decenas de PDFs cuando empieza un proyecto de formulación.
 
 **H2 — Formuladora senior**
 > Como formuladora, quiero obtener un resumen de las conclusiones de todos los estudios sobre un ingrediente en una aplicación específica (por ejemplo, ácido hialurónico en pintalabios), para identificar rápidamente qué funciona, qué no y qué queda sin resolver.
