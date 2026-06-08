@@ -35,11 +35,6 @@ def search(
     vector = _embed_query(query)
     candidates = _vector_search(vector, candidate_k, qdrant_filter)
 
-    log.info(
-        "Vector search: %d candidatos | filtros: doc_type=%s sections=%s study_id=%s keywords=%s",
-        len(candidates), doc_type, sections, study_id, keywords,
-    )
-
     if not candidates:
         return []
 
@@ -95,19 +90,28 @@ def _vector_search(
     vector: list[float],
     top_k: int,
     qdrant_filter: Filter | None,
+    score_threshold: float = 0.0,
 ) -> list[dict]:
     client = get_client()
     result = client.query_points(
         collection_name=settings.qdrant_collection,
         query=vector,
         limit=top_k,
-        score_threshold=0.0,
+        score_threshold=score_threshold,
         with_payload=True,
         query_filter=qdrant_filter,
     )
     chunks = [hit.payload for hit in result.points]
     for i, hit in enumerate(result.points):
         chunks[i]["_vector_score"] = hit.score
+
+    # Fallback: si el threshold filtró todo, busca sin restricción de score
+    if not chunks and score_threshold >= 0.0:
+        log.info("Vector: sin candidatos con threshold %.1f, reintentando sin filtro", score_threshold)
+        return _vector_search(vector, top_k, qdrant_filter, score_threshold=-1.0)
+
+    top_vector = chunks[0]["_vector_score"] if chunks else 0.0
+    log.info("Vector: %d candidatos | top score: %.3f", len(chunks), top_vector)
     return chunks
 
 

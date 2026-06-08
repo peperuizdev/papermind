@@ -84,6 +84,13 @@ def search(req: SearchRequest):
     ]
 
     top_relevance = out[0].relevance if out else "baja"
+    top_vector = chunks[0].get("_vector_score", 0.0) if chunks else 0.0
+    top_rerank = chunks[0].get("score", 0.0) if chunks else 0.0
+    studies = ", ".join(dict.fromkeys(c.study_id for c in out))
+    log.info(
+        "Resultado: %d chunks | vector %.3f → rerank %.3f | relevancia %s | %s",
+        len(out), top_vector, top_rerank, top_relevance, studies,
+    )
     return SearchResponse(query=req.query, top_relevance=top_relevance, chunks=out)
 
 
