@@ -254,6 +254,22 @@ npm run dev          # desde la raíz del proyecto
 # → http://localhost:5173
 ```
 
+### Vaciar la base de datos vectorial
+
+Eliminar todos los chunks e reingestar desde cero:
+
+```bash
+curl -X DELETE http://localhost:6333/collections/papermind
+```
+
+La colección se recrea automáticamente en la siguiente ingesta. Para borrar solo los puntos sin eliminar la colección:
+
+```bash
+curl -X POST http://localhost:6333/collections/papermind/points/delete \
+  -H "Content-Type: application/json" \
+  -d '{"filter": {}}'
+```
+
 ### Ingesta de documentos
 
 Con el backend y Qdrant corriendo, ingestar todos los PDFs de `DOCS_PATH`:

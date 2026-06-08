@@ -34,5 +34,7 @@ services:
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@papermind.com
       - PGADMIN_DEFAULT_PASSWORD=papermind
+    volumes:
+      - ./pgadmin_data:/var/lib/pgadmin
     depends_on:
       - postgres

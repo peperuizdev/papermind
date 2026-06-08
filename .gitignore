@@ -25,6 +25,9 @@ htmlcov/
 qdrant_data/
 n8n_data/
 postgres_data/
+pgadmin_data/
+pgadmin_pgpass
+pgadmin_servers.json
 
 # PDFs (corpus, not source code)
 data/
